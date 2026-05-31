@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Connexion | Formation pratique en apiculture</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body class="auth-page">
+    <main class="auth-shell">
+      <section class="auth-card" aria-labelledby="login-title">
+        <div class="brand-mark">AA</div>
+        <p class="eyebrow">Agri-tech Academy</p>
+        <h1 id="login-title">Espace étudiant Apiculture</h1>
+        <p class="lead">
+          Connectez-vous avec l’email utilisé à l’inscription et le code d’accès transmis après validation manuelle du paiement.
+        </p>
+
+        <form id="login-form" class="login-form" novalidate>
+          <label for="email">Email étudiant</label>
+          <input id="email" name="email" type="email" autocomplete="email" placeholder="nom@exemple.com" required />
+
+          <label for="access-code">Code d’accès</label>
+          <input id="access-code" name="accessCode" type="password" autocomplete="current-password" placeholder="Votre code privé" required />
+
+          <p id="login-error" class="form-message" role="alert" aria-live="polite"></p>
+
+          <button class="btn btn-primary" type="submit">Accéder à la formation</button>
+        </form>
+
+        <div class="support-strip">
+          <span>Paiement déjà validé mais accès bloqué ?</span>
+          <a class="support-link" href="https://wa.me/50936960292" target="_blank" rel="noopener">Support WhatsApp</a>
+        </div>
+      </section>
+    </main>
+
+    <script src="js/students.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/login.js"></script>
+  </body>
+</html>
