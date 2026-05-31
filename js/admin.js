@@ -3,7 +3,9 @@ const ADMIN_UNLOCK_KEY = 'agritech_admin_unlocked';
 
 let adminCourse = cloneCourse(typeof APICULTURE_COURSE !== 'undefined' ? APICULTURE_COURSE : {
   title: 'Formation pratique en apiculture',
-  subtitle: 'Modules pratiques, ressources PDF et suivi de progression.',
+  category: 'Apiculture',
+  description: 'Modules pratiques, ressources PDF et suivi de progression.',
+  resources: [],
   modules: [],
 });
 
@@ -34,7 +36,9 @@ function escapeHtml(value = '') {
 function normalizeCourse(course) {
   return {
     title: course.title || 'Formation pratique en apiculture',
-    subtitle: course.subtitle || 'Modules pratiques, ressources PDF et suivi de progression.',
+    category: course.category || 'Apiculture',
+    description: course.description || course.subtitle || 'Modules pratiques, ressources PDF et suivi de progression.',
+    resources: course.resources || [],
     modules: (course.modules || []).map((module, moduleIndex) => ({
       id: module.id || `m${moduleIndex + 1}`,
       title: module.title || `Module ${moduleIndex + 1}`,
@@ -44,8 +48,16 @@ function normalizeCourse(course) {
         title: lesson.title || `Leçon ${lessonIndex + 1}`,
         duration: lesson.duration || '',
         videoEmbedUrl: lesson.videoEmbedUrl || lesson.videoUrl || '',
-        pdfUrl: lesson.pdfUrl || '',
         summary: lesson.summary || '',
+        resources: lesson.resources || (lesson.pdfUrl
+          ? [
+              {
+                type: 'PDF',
+                title: 'Support de la leçon',
+                href: lesson.pdfUrl,
+              },
+            ]
+          : []),
       })),
     })),
   };
@@ -57,6 +69,10 @@ function generateCourseDataCode(course) {
 
 function countLessons(course) {
   return course.modules.reduce((total, module) => total + module.lessons.length, 0);
+}
+
+function getLessonAdminPdf(lesson) {
+  return lesson.resources?.find((resource) => resource.type === 'PDF')?.href || lesson.pdfUrl || '';
 }
 
 function updateLessonModuleOptions() {
@@ -89,7 +105,7 @@ function renderPreview() {
                   ${lesson.summary ? `<p>${escapeHtml(lesson.summary)}</p>` : ''}
                   <div class="lesson-actions">
                     ${lesson.videoEmbedUrl ? `<a href="${escapeHtml(lesson.videoEmbedUrl)}" target="_blank" rel="noopener">Embed vidéo</a>` : ''}
-                    ${lesson.pdfUrl ? `<a href="${escapeHtml(lesson.pdfUrl)}" target="_blank" rel="noopener">PDF</a>` : ''}
+                    ${getLessonAdminPdf(lesson) ? `<a href="${escapeHtml(getLessonAdminPdf(lesson))}" target="_blank" rel="noopener">PDF</a>` : ''}
                   </div>
                 </div>
               </article>
@@ -121,7 +137,7 @@ function renderGeneratedCode() {
 function renderAdmin() {
   adminCourse = normalizeCourse(adminCourse);
   document.querySelector('#course-title').value = adminCourse.title;
-  document.querySelector('#course-subtitle').value = adminCourse.subtitle;
+  document.querySelector('#course-subtitle').value = adminCourse.description;
   updateLessonModuleOptions();
   renderPreview();
   renderGeneratedCode();
@@ -167,8 +183,16 @@ function addLesson(event) {
     title,
     duration: document.querySelector('#lesson-duration').value.trim(),
     videoEmbedUrl: document.querySelector('#lesson-video').value.trim(),
-    pdfUrl: document.querySelector('#lesson-pdf').value.trim(),
     summary: document.querySelector('#lesson-summary').value.trim(),
+    resources: document.querySelector('#lesson-pdf').value.trim()
+      ? [
+          {
+            type: 'PDF',
+            title: 'Support de la leçon',
+            href: document.querySelector('#lesson-pdf').value.trim(),
+          },
+        ]
+      : [],
   });
 
   event.target.reset();
@@ -212,7 +236,7 @@ function bindAdminEvents() {
   });
 
   document.querySelector('#course-subtitle').addEventListener('input', (event) => {
-    adminCourse.subtitle = event.target.value.trim();
+    adminCourse.description = event.target.value.trim();
     renderGeneratedCode();
   });
 
