@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cours apiculture | Agri-tech Academy</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="dashboard.html" aria-label="Agri-tech Academy Dashboard">
+        <span class="brand-mark small">AA</span>
+        <span>Agri-tech Academy</span>
+      </a>
+      <nav class="top-nav" aria-label="Navigation étudiant">
+        <a href="dashboard.html">Dashboard</a>
+        <a href="https://wa.me/50936960292" target="_blank" rel="noopener">WhatsApp</a>
+        <button class="btn btn-ghost" data-logout type="button">Déconnexion</button>
+      </nav>
+    </header>
+
+    <main class="container">
+      <section class="course-hero">
+        <div>
+          <p class="eyebrow">Cours protégé</p>
+          <h1>Formation pratique en apiculture</h1>
+          <p class="lead">Suivez les modules dans l’ordre, consultez les ressources PDF et marquez chaque leçon comme terminée.</p>
+        </div>
+        <div class="course-progress-card">
+          <span>Progression</span>
+          <strong id="course-progress-percent">0%</strong>
+          <div class="progress-track" aria-hidden="true"><span id="course-progress-bar"></span></div>
+        </div>
+      </section>
+
+      <section id="course-modules" class="course-modules" aria-label="Modules et leçons"></section>
+    </main>
+
+    <script src="js/students.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/guard.js"></script>
+    <script src="js/course-data.js"></script>
+    <script src="js/progress.js"></script>
+    <script src="js/course.js"></script>
+  </body>
+</html>
