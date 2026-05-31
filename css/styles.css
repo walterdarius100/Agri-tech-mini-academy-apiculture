@@ -16,6 +16,10 @@
   box-sizing: border-box;
 }
 
+[hidden] {
+  display: none !important;
+}
+
 body {
   margin: 0;
   min-height: 100vh;
@@ -30,7 +34,9 @@ a {
 }
 
 button,
-input {
+input,
+select,
+textarea {
   font: inherit;
 }
 
@@ -52,7 +58,8 @@ input {
 .metric-card,
 .hero-card,
 .course-hero,
-.module-card {
+.module-card,
+.warning-card {
   border: 1px solid rgba(23, 107, 72, 0.12);
   border-radius: var(--radius);
   background: rgba(255, 255, 255, 0.92);
@@ -136,7 +143,14 @@ h2 {
   font-weight: 800;
 }
 
-.login-form input {
+.login-form input,
+.stacked-form input,
+.stacked-form select,
+.stacked-form textarea,
+.admin-password-form input,
+.admin-panel input,
+.admin-panel select,
+.admin-panel textarea {
   width: 100%;
   border: 1px solid rgba(20, 33, 27, 0.16);
   border-radius: 16px;
@@ -146,7 +160,14 @@ h2 {
   outline: none;
 }
 
-.login-form input:focus {
+.login-form input:focus,
+.stacked-form input:focus,
+.stacked-form select:focus,
+.stacked-form textarea:focus,
+.admin-password-form input:focus,
+.admin-panel input:focus,
+.admin-panel select:focus,
+.admin-panel textarea:focus {
   border-color: var(--green-700);
   box-shadow: 0 0 0 4px rgba(23, 107, 72, 0.12);
 }
@@ -254,7 +275,9 @@ h2 {
 }
 
 .dashboard-layout,
-.course-modules {
+.course-modules,
+.admin-layout,
+.admin-workspace {
   display: grid;
   gap: 1.5rem;
 }
@@ -275,7 +298,8 @@ h2 {
     var(--white);
 }
 
-.grid.two-columns {
+.grid.two-columns,
+.admin-grid.two-columns {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1.5rem;
@@ -284,7 +308,8 @@ h2 {
 .metric-card,
 .card,
 .module-card,
-.course-progress-card {
+.course-progress-card,
+.warning-card {
   padding: clamp(1.2rem, 3vw, 2rem);
 }
 
@@ -464,6 +489,162 @@ h2 {
   accent-color: var(--green-700);
 }
 
+
+.warning-card {
+  background: #fff7df;
+  border-color: rgba(242, 184, 75, 0.55);
+}
+
+.warning-card p {
+  margin-bottom: 0;
+}
+
+.lesson-main {
+  flex: 1;
+}
+
+.lesson-meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  align-items: center;
+}
+
+.lesson-duration {
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.lesson-summary {
+  color: var(--muted);
+}
+
+.lesson-summary,
+.video-frame {
+  margin-bottom: 1rem;
+}
+
+.lesson-empty {
+  border-radius: 16px;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.62);
+  color: var(--muted);
+  font-weight: 800;
+}
+
+.video-frame {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 18px;
+  background: var(--green-950);
+  box-shadow: 0 18px 40px rgba(6, 40, 31, 0.16);
+}
+
+.video-frame::before {
+  display: block;
+  padding-top: 56.25%;
+  content: '';
+}
+
+.video-frame iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.admin-hero code {
+  color: var(--gold);
+  font-weight: 900;
+}
+
+.admin-lock,
+.admin-panel {
+  display: grid;
+  gap: 1rem;
+}
+
+.admin-password-form,
+.stacked-form {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.admin-password-form label,
+.stacked-form label,
+.admin-panel label {
+  display: grid;
+  gap: 0.4rem;
+  color: var(--green-950);
+  font-weight: 900;
+}
+
+.admin-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.admin-grid.two-fields {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.split-heading {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.admin-preview,
+.admin-module-preview {
+  display: grid;
+  gap: 1rem;
+}
+
+.admin-module-preview {
+  border: 1px solid rgba(20, 33, 27, 0.08);
+  border-radius: 20px;
+  padding: 1rem;
+  background: var(--cream);
+}
+
+.admin-lesson-preview {
+  border-radius: 16px;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.78);
+}
+
+.admin-lesson-preview h4 {
+  margin: 0 0 0.35rem;
+  color: var(--green-950);
+}
+
+.empty-state {
+  margin-bottom: 0;
+  color: var(--muted);
+  font-weight: 800;
+}
+
+.code-output {
+  width: 100%;
+  min-height: 420px;
+  border: 1px solid rgba(20, 33, 27, 0.16);
+  border-radius: 18px;
+  padding: 1rem;
+  background: #10251e;
+  color: #f8f4ea;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.form-message.success {
+  color: var(--green-700);
+}
+
 @media (max-width: 760px) {
   .site-header,
   .hero-card,
@@ -480,7 +661,9 @@ h2 {
     justify-content: space-between;
   }
 
-  .grid.two-columns {
+  .grid.two-columns,
+  .admin-grid.two-columns,
+  .admin-grid.two-fields {
     grid-template-columns: 1fr;
   }
 
