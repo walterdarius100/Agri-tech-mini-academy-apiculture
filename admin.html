@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Admin interne | Agri-tech Academy</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="dashboard.html" aria-label="Agri-tech Academy Dashboard">
+        <span class="brand-mark small">AA</span>
+        <span>Agri-tech Academy</span>
+      </a>
+      <nav class="top-nav" aria-label="Navigation admin">
+        <a href="course.html">Cours</a>
+        <a href="dashboard.html">Dashboard étudiant</a>
+      </nav>
+    </header>
+
+    <main class="container admin-layout">
+      <section class="course-hero admin-hero">
+        <div>
+          <p class="eyebrow">Outil interne</p>
+          <h1>Préparer les données du cours</h1>
+          <p class="lead">Ajoutez des modules et leçons, prévisualisez la formation, puis copiez le contenu généré pour remplacer <code>js/course-data.js</code>.</p>
+        </div>
+      </section>
+
+      <section id="admin-warning" class="warning-card" role="note">
+        <strong>Outil interne non sécurisé, ne pas publier comme vrai dashboard admin.</strong>
+        <p>Ce fichier statique ne modifie pas le dépôt, ne téléverse aucun fichier et ne doit jamais contenir de token GitHub.</p>
+      </section>
+
+      <section id="admin-lock" class="card admin-lock" aria-labelledby="admin-lock-title">
+        <div>
+          <p class="eyebrow">Accès local simple</p>
+          <h2 id="admin-lock-title">Entrer le mot de passe admin</h2>
+          <p>Protection volontairement légère côté navigateur pour éviter l’accès accidentel.</p>
+        </div>
+        <form id="admin-password-form" class="admin-password-form">
+          <label for="admin-password">Mot de passe</label>
+          <input id="admin-password" type="password" autocomplete="current-password" required />
+          <button class="btn btn-primary" type="submit">Déverrouiller</button>
+          <p id="admin-password-message" class="form-message" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <div id="admin-workspace" class="admin-workspace" hidden>
+        <section class="card admin-panel" aria-labelledby="course-settings-title">
+          <div class="section-heading">
+            <p class="eyebrow">Informations globales</p>
+            <h2 id="course-settings-title">Cours</h2>
+          </div>
+          <div class="admin-grid two-fields">
+            <label>
+              Titre du cours
+              <input id="course-title" type="text" />
+            </label>
+            <label>
+              Description courte
+              <input id="course-subtitle" type="text" />
+            </label>
+          </div>
+        </section>
+
+        <section class="admin-grid two-columns">
+          <article class="card admin-panel" aria-labelledby="module-form-title">
+            <div class="section-heading">
+              <p class="eyebrow">Créer</p>
+              <h2 id="module-form-title">Ajouter un module</h2>
+            </div>
+            <form id="module-form" class="stacked-form">
+              <label>
+                Titre du module
+                <input id="module-title" type="text" required />
+              </label>
+              <label>
+                Description du module
+                <textarea id="module-description" rows="4" required></textarea>
+              </label>
+              <button class="btn btn-primary" type="submit">Ajouter le module</button>
+            </form>
+          </article>
+
+          <article class="card admin-panel" aria-labelledby="lesson-form-title">
+            <div class="section-heading">
+              <p class="eyebrow">Créer</p>
+              <h2 id="lesson-form-title">Ajouter une leçon</h2>
+            </div>
+            <form id="lesson-form" class="stacked-form">
+              <label>
+                Module cible
+                <select id="lesson-module" required></select>
+              </label>
+              <label>
+                Titre de la leçon
+                <input id="lesson-title" type="text" required />
+              </label>
+              <label>
+                Durée
+                <input id="lesson-duration" type="text" placeholder="Ex. 12 min" />
+              </label>
+              <label>
+                Lien vidéo embed
+                <input id="lesson-video" type="url" placeholder="https://www.youtube.com/embed/..." />
+              </label>
+              <label>
+                Lien PDF
+                <input id="lesson-pdf" type="text" placeholder="assets/documents/fiche.pdf" />
+              </label>
+              <label>
+                Résumé de la leçon
+                <textarea id="lesson-summary" rows="4"></textarea>
+              </label>
+              <button class="btn btn-primary" type="submit">Ajouter la leçon</button>
+            </form>
+          </article>
+        </section>
+
+        <section class="card admin-panel" aria-labelledby="preview-title">
+          <div class="section-heading split-heading">
+            <div>
+              <p class="eyebrow">Aperçu</p>
+              <h2 id="preview-title">Cours généré</h2>
+            </div>
+            <span id="preview-count" class="module-pill">0</span>
+          </div>
+          <div id="admin-preview" class="admin-preview"></div>
+        </section>
+
+        <section class="card admin-panel" aria-labelledby="generated-code-title">
+          <div class="section-heading split-heading">
+            <div>
+              <p class="eyebrow">Export</p>
+              <h2 id="generated-code-title">Contenu complet de js/course-data.js</h2>
+            </div>
+            <button id="copy-course-data" class="btn btn-secondary" type="button">Copier le code course-data.js</button>
+          </div>
+          <p id="copy-message" class="form-message success" aria-live="polite"></p>
+          <textarea id="generated-code" class="code-output" rows="18" readonly></textarea>
+        </section>
+      </div>
+    </main>
+
+    <script src="js/course-data.js"></script>
+    <script src="js/admin.js"></script>
+  </body>
+</html>

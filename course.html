@@ -3,38 +3,41 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
     <title>Cours apiculture | Agri-tech Academy</title>
     <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body>
-    <header class="site-header">
-      <a class="brand" href="dashboard.html" aria-label="Agri-tech Academy Dashboard">
+    <header class="site-header academy-header">
+      <a class="brand" href="dashboard.html" aria-label="Agri-tech Academy Apiculture Dashboard">
         <span class="brand-mark small">AA</span>
-        <span>Agri-tech Academy</span>
+        <span>Agri-tech Academy <strong>Apiculture</strong></span>
       </a>
       <nav class="top-nav" aria-label="Navigation étudiant">
         <a href="dashboard.html">Dashboard</a>
-        <a href="https://wa.me/50936960292" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="course.html" aria-current="page">Cours</a>
+        <a href="https://wa.me/50936960292" target="_blank" rel="noopener">Support WhatsApp</a>
         <button class="btn btn-ghost" data-logout type="button">Déconnexion</button>
       </nav>
     </header>
 
-    <main class="container">
-      <section class="course-hero">
-        <div>
-          <p class="eyebrow">Cours protégé</p>
-          <h1>Formation pratique en apiculture</h1>
-          <p class="lead">Suivez les modules dans l’ordre, consultez les ressources PDF et marquez chaque leçon comme terminée.</p>
-        </div>
-        <div class="course-progress-card">
-          <span>Progression</span>
-          <strong id="course-progress-percent">0%</strong>
-          <div class="progress-track" aria-hidden="true"><span id="course-progress-bar"></span></div>
-        </div>
-      </section>
+    <main id="coursePlayerRoot" class="academy-main" aria-live="polite"></main>
 
-      <section id="course-modules" class="course-modules" aria-label="Modules et leçons"></section>
-    </main>
+    <footer class="academy-footer">
+      <div>
+        <a class="brand" href="dashboard.html" aria-label="Agri-tech Academy Apiculture">
+          <span class="brand-mark small">AA</span>
+          <span>Agri-tech Academy</span>
+        </a>
+        <p>Mini-Academy Apiculture — formation pratique, ressources PDF et accompagnement étudiant.</p>
+      </div>
+      <nav aria-label="Liens de pied de page">
+        <a href="dashboard.html">Dashboard</a>
+        <a href="course.html">Cours</a>
+        <a href="https://wa.me/50936960292" target="_blank" rel="noopener">Support WhatsApp</a>
+      </nav>
+      <p>© 2026 Agri-tech Academy — Tous droits réservés.</p>
+    </footer>
 
     <script src="js/students.js"></script>
     <script src="js/auth.js"></script>
